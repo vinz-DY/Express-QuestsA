@@ -76,7 +76,7 @@ const getUsersById = (req, res) => {
   database
     .query("select * from users where id = ?", [id])
     .then(([users]) => {
-      if (movies[0] != null) {
+      if (users[0] != null) {
         res.json(users[0]);
       } else {
         res.sendStatus(404);

@@ -56,14 +56,25 @@ describe("POST /api/movies", () => {
 
     expect(getResponse.body).toHaveProperty("title");
     expect(getResponse.body.title).toStrictEqual(newMovie.title);
+
+    expect(getResponse.body).toHaveProperty("director");
+    expect(getResponse.body.director).toStrictEqual(newMovie.director);
+
+    expect(getResponse.body).toHaveProperty("year");
+    expect(getResponse.body.year).toStrictEqual(newMovie.year);
+
+    expect(getResponse.body).toHaveProperty("color");
+
+    expect(getResponse.body).toHaveProperty("duration");
+  
   });
-    it("should return an error", async () => {
-      const movieWithMissingProps = { title: "Harry Potter" };
+  it("should return an error", async () => {
+    const movieWithMissingProps = { title: "Harry Potter" };
 
-      const response = await request(app)
-        .post("/api/movies")
-        .send(movieWithMissingProps);
+    const response = await request(app)
+      .post("/api/movies")
+      .send(movieWithMissingProps);
 
-      expect(response.status).toEqual(500);
-    });
+    expect(response.status).toEqual(500);
+  });
 });

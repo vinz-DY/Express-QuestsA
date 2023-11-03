@@ -56,7 +56,6 @@ const getMovieById = (req, res) => {
     });
 };
 
-
 const getUsers = (req, res) => {
   database
     .query("select * from users")
@@ -68,7 +67,6 @@ const getUsers = (req, res) => {
       res.sendStatus(500);
     });
 };
-
 
 const getUsersById = (req, res) => {
   const id = parseInt(req.params.id);
@@ -88,17 +86,15 @@ const getUsersById = (req, res) => {
     });
 };
 
-
 const postMovie = (req, res) => {
   const { title, director, year, color, duration } = req.body;
-  
+
   database
     .query(
       "INSERT INTO movies(title, director, year, color, duration) VALUES (?, ?, ?, ?, ?)",
       [title, director, year, color, duration]
     )
     .then(([result]) => {
-      
       res.status(201).send({ id: result.insertId });
     })
     .catch((err) => {
@@ -115,7 +111,6 @@ const postUser = (req, res) => {
       [firstname, lastname, email, city, language]
     )
     .then(([result]) => {
-   
       res.status(201).send({ id: result.insertId });
     })
     .catch((err) => {

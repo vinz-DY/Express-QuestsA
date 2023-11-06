@@ -64,9 +64,10 @@ describe("POST /api/movies", () => {
     expect(getResponse.body.year).toStrictEqual(newMovie.year);
 
     expect(getResponse.body).toHaveProperty("color");
+    expect(["1", "0"]).toContain(getResponse.body.color);
 
     expect(getResponse.body).toHaveProperty("duration");
-  
+    expect(getResponse.body.duration).toStrictEqual(newMovie.duration);
   });
   it("should return an error", async () => {
     const movieWithMissingProps = { title: "Harry Potter" };

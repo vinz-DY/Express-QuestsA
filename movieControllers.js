@@ -43,7 +43,7 @@ const updateMovie = (req, res) => {
         res.sendStatus(204);
       }
     })
-    
+
     .catch((err) => {
       console.error(err);
       res.sendStatus(500);
@@ -210,3 +210,4 @@ module.exports = {
   updateMovie,
   updateUsers
 };
+

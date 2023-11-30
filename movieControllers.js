@@ -96,6 +96,41 @@ const getMovieById = (req, res) => {
     });
 };
 
+const deleteMovieById = (req, res) => {
+  const id = parseInt(req.params.id);
+
+  database
+    .query("delete from movies where id = ?", [id])
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+const deleteUserById = (req, res) => {
+  const id = parseInt(req.params.id);
+
+  database
+    .query("delete from users where id = ?", [id])
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 const getUsers = (req, res) => {
   let sql = "select * from users";
   const sqlValues = [];
@@ -208,6 +243,8 @@ module.exports = {
   postMovie,
   postUser,
   updateMovie,
-  updateUsers
+  updateUsers,
+  deleteMovieById,
+  deleteUserById
 };
 
